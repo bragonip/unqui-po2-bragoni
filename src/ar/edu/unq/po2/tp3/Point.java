@@ -39,11 +39,13 @@ public class Point {
 	}
 
 	public Point addPoint(Point aPoint) {
-		Point newPoint = new Point();
-
-		newPoint.setX(this.getX() + aPoint.getX());
-		newPoint.setY(this.getX() + aPoint.getX());
-
-		return newPoint;
+		
+		return this.point(this.getX() + aPoint.getX(), this.getX() + aPoint.getX());
+//		Point newPoint = new Point();
+//
+//		newPoint.setX(this.getX() + aPoint.getX());
+//		newPoint.setY(this.getX() + aPoint.getX());
+//
+//		return newPoint;
 	}
 }
