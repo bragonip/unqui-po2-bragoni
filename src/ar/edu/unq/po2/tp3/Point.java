@@ -5,11 +5,15 @@ public class Point {
 	private int x;
 	private int y;
 
+	public Point point() {
+		Point newPoint = new Point();
+		newPoint.movePoint(0, 0);
+		return newPoint;
+	}
+
 	public Point point(int x, int y) {
 		Point newPoint = new Point();
-
-		newPoint.setBothAxis(x, y);
-
+		newPoint.movePoint(x, y);
 		return newPoint;
 	}
 
@@ -29,8 +33,17 @@ public class Point {
 		this.y = y;
 	}
 
-	private void setBothAxis(int x, int y) {
+	private void movePoint(int x, int y) {
 		this.setX(x);
 		this.setY(y);
+	}
+
+	public Point addPoint(Point aPoint) {
+		Point newPoint = new Point();
+
+		newPoint.setX(this.getX() + aPoint.getX());
+		newPoint.setY(this.getX() + aPoint.getX());
+
+		return newPoint;
 	}
 }
