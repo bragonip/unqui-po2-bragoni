@@ -13,6 +13,7 @@ public class Multioperador {
 			c += entero;
 		}
 		return c;
+//		return lista.stream().mapToInt(Integer::intValue).sum();
 	}
 
 	public int restar(ArrayList<Integer> lista) {
@@ -25,7 +26,7 @@ public class Multioperador {
 
 	public int multiplicar(ArrayList<Integer> lista) {
 		Integer c = lista.get(0);
-		int tamanioDeLista = lista.toArray().length;
+		int tamanioDeLista = lista.size();
 
 		for (int i = 1; i != tamanioDeLista; i++) {
 			c = c * lista.get(i);
