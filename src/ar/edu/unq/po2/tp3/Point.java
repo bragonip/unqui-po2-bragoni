@@ -13,7 +13,7 @@ public class Point {
 		this.movePoint(x, y);
 	}
 
-	private int getX() {
+	public int getX() {
 		return this.x;
 	}
 
@@ -21,7 +21,7 @@ public class Point {
 		this.x = x;
 	}
 
-	private int getY() {
+	public int getY() {
 		return this.y;
 	}
 
