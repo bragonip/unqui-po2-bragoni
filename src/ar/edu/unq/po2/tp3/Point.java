@@ -5,16 +5,12 @@ public class Point {
 	private int x;
 	private int y;
 
-	public Point point() {
-		Point newPoint = new Point();
-		newPoint.movePoint(0, 0);
-		return newPoint;
+	public Point() {
+		this.movePoint(0, 0);
 	}
 
-	public Point point(int x, int y) {
-		Point newPoint = new Point();
-		newPoint.movePoint(x, y);
-		return newPoint;
+	public Point(int x, int y) {
+		this.movePoint(x, y);
 	}
 
 	private int getX() {
@@ -40,7 +36,7 @@ public class Point {
 
 	public Point addPoint(Point aPoint) {
 		
-		return this.point(this.getX() + aPoint.getX(), this.getX() + aPoint.getX());
+		return new Point(this.getX() + aPoint.getX(), this.getX() + aPoint.getX());
 //		Point newPoint = new Point();
 //
 //		newPoint.setX(this.getX() + aPoint.getX());
