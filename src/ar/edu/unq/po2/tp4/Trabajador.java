@@ -39,4 +39,8 @@ public class Trabajador {
 		return this.getMontoImponible() * 0.02;
 	}
 
+	public void agregarIngreso(Ingreso ingreso) {
+		this.getIngresos().add(ingreso);
+	}
+
 }
