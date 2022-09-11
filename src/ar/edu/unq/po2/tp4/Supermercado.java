@@ -7,14 +7,14 @@ public class Supermercado {
 	private String direccion;
 	private ArrayList<Producto> productos;
 
-	public String getNombre() {
-		return nombre;
-	}
-
 	public Supermercado(String nombre, String direccion) {
 		this.setNombre(nombre);
 		this.setDireccion(direccion);
 		this.setProductos(new ArrayList<Producto>());
+	}
+
+	public String getNombre() {
+		return nombre;
 	}
 
 	private void setNombre(String nombre) {
@@ -37,16 +37,20 @@ public class Supermercado {
 		this.productos = productos;
 	}
 
-	public int cantidadDeProductos() {
+	public int getCantidadDeProductos() {
 		return this.getProductos().size();
 	}
 
-	public Double sumaDePreciosDeProductos() {
+	public Double getPrecioTotal() {
 		Double sumaDePrecios = 0.0;
 		for (Producto producto : this.getProductos()) {
 			sumaDePrecios += producto.getPrecio();
 		}
 		return sumaDePrecios;
 //		return this.getProductos().stream().map(producto -> producto.getPrecio()).sum();
+	}
+
+	public void agregarProducto(Producto producto) {
+		this.getProductos().add(producto);
 	}
 }
