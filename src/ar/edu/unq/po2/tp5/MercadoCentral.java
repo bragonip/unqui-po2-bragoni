@@ -6,10 +6,12 @@ public class MercadoCentral {
 
 	private Map<ProductoEmpresa, Integer> stock;
 
+//	Constructores
 	public MercadoCentral() {
 		this.setStock(new HashMap<ProductoEmpresa, Integer>());
 	}
 
+//	getters y setters
 	private Map<ProductoEmpresa, Integer> getStock() {
 		return this.stock;
 	}
@@ -18,6 +20,7 @@ public class MercadoCentral {
 		this.stock = stock;
 	}
 
+//	metodos
 	public void restarProducto(ProductoEmpresa producto) {
 		this.getStock().put(producto, this.getStock().get(producto) - 1);
 	}

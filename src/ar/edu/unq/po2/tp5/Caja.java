@@ -34,10 +34,6 @@ public class Caja implements Agencia {
 
 	public void registrarProducto(ProductoEmpresa producto) {
 		this.setMontoTotal(this.getMontoTotal() + producto.getPrecio());
-		this.restarProductoDeStock(producto);
-	}
-
-	public void restarProductoDeStock(ProductoEmpresa producto) {
 		this.getMercado().restarProducto(producto);
 	}
 

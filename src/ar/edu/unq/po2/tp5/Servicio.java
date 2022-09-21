@@ -27,6 +27,7 @@ public class Servicio extends Factura {
 		this.unidadesConsumidas = unidadesConsumidas;
 	}
 
+	@Override
 	public Double getMontoAPagar() {
 		return this.getCostoPorUnidadConsumida() * this.getUnidadesConsumidas();
 	}
