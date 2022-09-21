@@ -1,8 +1,8 @@
 package ar.edu.unq.po2.tp5;
 
-import java.util.*;
+//import java.util.*;
 
-public class Caja {
+public class Caja implements Agencia {
 
 	private MercadoCentral mercado;
 	private Double montoTotal = 0d;
@@ -27,18 +27,28 @@ public class Caja {
 		this.montoTotal = montoTotal;
 	}
 
-	public void registrarProductos(List<ProductoTradicional> productos) {
-		this.setMontoTotal(0d);
-		productos.stream().forEach(producto -> this.registrarProducto(producto));
-	}
+//	public void registrarProductos(List<ProductoEmpresa> productos) {
+//		this.setMontoTotal(0d);
+//		productos.stream().forEach(producto -> this.registrarProducto(producto));
+//	}
 
-	public void registrarProducto(ProductoTradicional producto) {
+	public void registrarProducto(ProductoEmpresa producto) {
 		this.setMontoTotal(this.getMontoTotal() + producto.getPrecio());
 		this.restarProductoDeStock(producto);
 	}
 
-	public void restarProductoDeStock(ProductoTradicional producto) {
+	public void restarProductoDeStock(ProductoEmpresa producto) {
 		this.getMercado().restarProducto(producto);
+	}
+
+//	public void pagarFacturas(List<Factura> facturas) {
+//		this.setMontoTotal(0d);
+//		facturas.stream().forEach(factura -> this.registrarPago(factura));
+//	}
+
+	@Override
+	public void registrarPago(Factura factura) {
+		// TODO Auto-generated method stub
 	}
 
 }

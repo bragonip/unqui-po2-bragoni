@@ -1,10 +1,10 @@
 package ar.edu.unq.po2.tp5;
 
-public class ProductoTradicional {
+public class ProductoEmpresa {
 
 	private Double precio;
 
-	public ProductoTradicional(Double precio) {
+	public ProductoEmpresa(Double precio) {
 		this.setPrecio(precio);
 	}
 
