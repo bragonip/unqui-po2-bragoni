@@ -50,7 +50,7 @@ public class Cliente {
 		this.edad = edad;
 	}
 
-	private double getSueldoNetoMesual() {
+	public double getSueldoNetoMesual() {
 		return sueldoNetoMesual;
 	}
 
@@ -71,8 +71,8 @@ public class Cliente {
 	}
 	
 	public solicitarCredito() {
-		SolicitudCredito nuevaSolicitud = new Solicitud();
-		this.getBanco().registrarSolicitudCredito()
+		SolicitudCredito nuevaSolicitud = new Solicitud(this, );
+		this.getBanco().registrarSolicitudCredito(nuevaSolicitud);
 		
 	}
 

@@ -12,7 +12,7 @@ public abstract class SolicitudCredito {
 		this.setPlazo(plazo);
 	}
 
-	private Cliente getCliente() {
+	public Cliente getCliente() {
 		return cliente;
 	}
 
@@ -20,7 +20,7 @@ public abstract class SolicitudCredito {
 		this.cliente = cliente;
 	}
 
-	private double getMonto() {
+	public double getMonto() {
 		return monto;
 	}
 
@@ -28,7 +28,7 @@ public abstract class SolicitudCredito {
 		this.monto = monto;
 	}
 
-	private int getPlazo() {
+	public int getPlazo() {
 		return plazo;
 	}
 

@@ -1,14 +1,23 @@
 package ar.edu.unq.po2.tp6;
 
-public class SolicitudCreditoPersonal extends SolicitudCredito{
-	
+public class SolicitudCreditoPersonal extends SolicitudCredito {
+
 	public SolicitudCreditoPersonal(Cliente cliente, Double monto, int plazo) {
-		this.Super(cliente, monto, plazo);
+		super(cliente, monto, plazo);
 	}
 
 	@Override
 	public boolean esAceptable() {
-		
-		return false;
+
+		return this.sueldoNetoAnualsuficiente() && this.sueldoNetoMensualDentroDelLimite();
 	}
+
+	private boolean sueldoNetoAnualsuficiente() {
+		return getCliente().getSueldoNetoAnual() >= 15000;
+	}
+
+	private boolean sueldoNetoMensualDentroDelLimite() {
+		return (this.getMonto() / this.getPlazo()) <= (this.getCliente().getSueldoNetoMesual() * 0.7);
+	}
+
 }
