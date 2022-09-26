@@ -2,7 +2,7 @@ package ar.edu.unq.po2.tp6;
 
 import java.util.List;
 
-public class Banco {
+public class Banco implements ISoporteDeGestion{
 
 	private List<Cliente> clientes;
 	private List<SolicitudDeCredito> solicitudesDeCredito;
@@ -28,10 +28,12 @@ public class Banco {
 		this.solicitudesDeCredito = solicitudesDeCredito;
 	}
 
+	@Override
 	public void agregarCliente(Cliente cliente) {
 		this.getClientes().add(cliente);
 	}
 
+	@Override
 	public void registrarSolicitudDeCredito(SolicitudDeCredito solicitud) {
 		this.getSolicitudesDeCredito().add(solicitud);
 	}
@@ -46,7 +48,8 @@ public class Banco {
 		cliente.recibirDinero(monto);
 	}
 
-	public double montoADesembolsaEnCreditos() {
+	@Override
+	public double montoADesembolsarEnCreditos() {
 		return this.getSolicitudesDeCredito().stream().
 				filter(solicitud -> solicitud.esAceptable())
 				.map(solicitud -> solicitud.getMonto())
