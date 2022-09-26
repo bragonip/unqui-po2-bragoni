@@ -2,19 +2,19 @@ package ar.edu.unq.po2.tp6;
 
 public class SolicitudCreditoHipotecario extends SolicitudDeCredito {
 
-	private Propiedad propiedad;
+	private Propiedad garantia;
 
-	public SolicitudCreditoHipotecario(Cliente cliente, Double monto, int plazo, Propiedad propiedad) {
+	public SolicitudCreditoHipotecario(Cliente cliente, Double monto, int plazo, Propiedad garantia) {
 		super(cliente, monto, plazo);
-		this.setPropiedad(propiedad);
+		this.setGarantia(garantia);
 	}
 
-	private Propiedad getPropiedad() {
-		return propiedad;
+	private Propiedad getGarantia() {
+		return this.garantia;
 	}
 
-	private void setPropiedad(Propiedad propiedad) {
-		this.propiedad = propiedad;
+	private void setGarantia(Propiedad garantia) {
+		this.garantia = garantia;
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class SolicitudCreditoHipotecario extends SolicitudDeCredito {
 	}
 
 	private boolean valorPropiedadAceptable() {
-		return this.getMonto() <= (this.getPropiedad().getValorFiscal() * 0.5);
+		return this.getMonto() <= (this.getGarantia().getValorFiscal() * 0.7);
 	}
 
 	private boolean edadAceptable() {

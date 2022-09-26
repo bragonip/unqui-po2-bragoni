@@ -7,6 +7,11 @@ public class Banco {
 	private List<Cliente> clientes;
 	private List<SolicitudDeCredito> solicitudesDeCredito;
 
+	public Banco(List<Cliente> clientes, List<SolicitudDeCredito> solicitudes) {
+		this.setClientes(clientes);
+		this.setSolicitudesDeCredito(solicitudes);
+	}
+
 	private List<Cliente> getClientes() {
 		return clientes;
 	}
@@ -22,24 +27,30 @@ public class Banco {
 	private void setSolicitudesDeCredito(List<SolicitudDeCredito> solicitudesDeCredito) {
 		this.solicitudesDeCredito = solicitudesDeCredito;
 	}
-	
-	public void nuevaSolicitudCredito(Cliente cliente, Double monto, int plazo) {
-		SolicitudDeCredito nuevaSolicitudDeCredito = new SolicitudDeCredito(cliente, monto, plazo);
-		this.registrarSolicitudCredito(nuevaSolicitudDeCredito);
+
+	public void agregarCliente(Cliente cliente) {
+		this.getClientes().add(cliente);
 	}
 
-	public void registrarSolicitudCredito(SolicitudDeCredito nuevaSolicitudDeCredito) {
-		this.getSolicitudesDeCredito().add(nuevaSolicitudDeCredito);
+	public void registrarSolicitudDeCredito(SolicitudDeCredito solicitud) {
+		this.getSolicitudesDeCredito().add(solicitud);
 	}
 
-	public void evaluarSolicitudCredito() {
-
+	public void evaluarSolicitudCredito(SolicitudDeCredito solicitud) {
+		if (solicitud.esAceptable()) {
+			this.otorgarCredito(solicitud.getCliente(), solicitud.getMonto());
+		}
 	}
 
-	public void otorgarCredito() {
-
+	public void otorgarCredito(Cliente cliente, double monto) {
+		cliente.recibirDinero(monto);
 	}
 
-
+	public double montoADesembolsaEnCreditos() {
+		return this.getSolicitudesDeCredito().stream().
+				filter(solicitud -> solicitud.esAceptable())
+				.map(solicitud -> solicitud.getMonto())
+				.reduce(0d, (a,b) -> a + b);
+	}
 
 }

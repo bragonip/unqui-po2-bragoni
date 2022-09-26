@@ -19,7 +19,7 @@ public class Cliente {
 	}
 
 	private String getNombre() {
-		return nombre;
+		return this.nombre;
 	}
 
 	private void setNombre(String nombre) {
@@ -27,7 +27,7 @@ public class Cliente {
 	}
 
 	private String getApellido() {
-		return apellido;
+		return this.apellido;
 	}
 
 	private void setApellido(String apellido) {
@@ -35,7 +35,7 @@ public class Cliente {
 	}
 
 	private String getDireccion() {
-		return direccion;
+		return this.direccion;
 	}
 
 	private void setDireccion(String direccion) {
@@ -43,7 +43,7 @@ public class Cliente {
 	}
 
 	public int getEdad() {
-		return edad;
+		return this.edad;
 	}
 
 	private void setEdad(int edad) {
@@ -51,7 +51,7 @@ public class Cliente {
 	}
 
 	public double getSueldoNetoMesual() {
-		return sueldoNetoMesual;
+		return this.sueldoNetoMesual;
 	}
 
 	private void setSueldoNetoMesual(double sueldoNetoMesual) {
@@ -59,7 +59,7 @@ public class Cliente {
 	}
 
 	private Banco getBanco() {
-		return banco;
+		return this.banco;
 	}
 
 	private void setBanco(Banco banco) {
@@ -70,10 +70,22 @@ public class Cliente {
 		return this.getSueldoNetoMesual() * 12;
 	}
 
-	public void solicitarCredito(Double monto, int plazo) {
+	public void solicitarCredito(SolicitudDeCredito solicitud) {
 
-		this.getBanco().nuevaSolicitudCredito(this, monto, plazo);
-
+		this.getBanco().registrarSolicitudDeCredito(solicitud);
 	}
 
+	public void solicitarCreditoPersonal(Double monto, int plazo) {
+		SolicitudDeCredito nuevaSolicitudDeCredito = new SolicitudCreditoPersonal(this, monto, plazo);
+		this.solicitarCredito(nuevaSolicitudDeCredito);
+	}
+
+	public void solicitarCreditoHipotecario(Double monto, int plazo, Propiedad garantia) {
+		SolicitudDeCredito nuevaSolicitudDeCredito = new SolicitudCreditoHipotecario(this, monto, plazo, garantia);
+		this.solicitarCredito(nuevaSolicitudDeCredito);
+	}
+	
+	public void recibirDinero(double monto) {
+		
+	}
 }
