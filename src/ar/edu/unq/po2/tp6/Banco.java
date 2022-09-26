@@ -52,8 +52,8 @@ public class Banco implements ISoporteDeGestion{
 	public double montoADesembolsarEnCreditos() {
 		return this.getSolicitudesDeCredito().stream().
 				filter(solicitud -> solicitud.esAceptable())
-				.map(solicitud -> solicitud.getMonto())
-				.reduce(0d, (a,b) -> a + b);
+				.mapToDouble(solicitud -> solicitud.getMonto())
+				.sum();
 	}
 
 }
