@@ -32,4 +32,16 @@ public class Servicio extends Factura {
 		return this.getCostoPorUnidadConsumida() * this.getUnidadesConsumidas();
 	}
 
+	@Override
+	public void registrarPago(Factura factura) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void registrar(Caja caja) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

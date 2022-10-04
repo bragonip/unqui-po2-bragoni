@@ -32,9 +32,10 @@ public class Caja implements Agencia {
 //		productos.stream().forEach(producto -> this.registrarProducto(producto));
 //	}
 
-	public void registrarProducto(ProductoEmpresa producto) {
-		this.setMontoTotal(this.getMontoTotal() + producto.getPrecio());
-		this.getMercado().restarProducto(producto);
+	public void registrar(IRegistrable registrable) {
+		registrable.registrar(this);
+//		this.setMontoTotal(this.getMontoTotal() + producto.getPrecio());
+//		this.getMercado().restarProducto(producto);
 	}
 
 //	public void pagarFacturas(List<Factura> facturas) {

@@ -19,4 +19,16 @@ public class Impuesto extends Factura {
 	public Double getMontoAPagar() {
 		return this.getTasa();
 	}
+
+	@Override
+	public void registrarPago(Factura factura) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void registrar(Caja caja) {
+		// TODO Auto-generated method stub
+		
+	}
 }

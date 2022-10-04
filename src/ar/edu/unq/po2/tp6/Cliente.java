@@ -71,7 +71,6 @@ public class Cliente {
 	}
 
 	public void solicitarCredito(SolicitudDeCredito solicitud) {
-
 		this.getBanco().registrarSolicitudDeCredito(solicitud);
 	}
 
