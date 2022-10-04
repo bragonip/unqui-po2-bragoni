@@ -1,39 +1,37 @@
 package ar.edu.unq.po2.tp7;
 
 public class Carta {
-	
+
 	private PaloCarta palo;
-	private String valor;
-	
-	public Carta(PaloCarta palo, String valor) {
+	private ValorCarta valor;
+
+	public Carta(PaloCarta palo, ValorCarta valor) {
 		this.setPalo(palo);
 		this.setValor(valor);
 	}
-	
-	private PaloCarta getPalo() {
+
+	public PaloCarta getPalo() {
 		return this.palo;
 	}
+
 	private void setPalo(PaloCarta palo) {
 		this.palo = palo;
 	}
 
-	private String getValor() {
+	public ValorCarta getValor() {
 		return this.valor;
 	}
 
-	private void setValor(String valor) {
+	private void setValor(ValorCarta valor) {
 		this.valor = valor;
 	}
 
 	public boolean esSuperiorA(Carta carta) {
-		return this.getValor() > carta.getValor();
+		return this.getValor().ordinal() > carta.getValor().ordinal();
 	}
-
-
 
 	public boolean esMismoPalo(Carta carta) {
 		return this.getPalo() == carta.getPalo();
 	}
-
 
 }

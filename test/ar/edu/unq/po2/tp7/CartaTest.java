@@ -14,8 +14,8 @@ class CartaTest {
 	@Test
 	void testEsSuperiorATrue() {
 
-		Carta carta4C = new Carta(PaloCarta.CORAZON, 4);
-		Carta carta5C = new Carta(PaloCarta.CORAZON, 5);
+		Carta carta4C = new Carta(PaloCarta.CORAZON, ValorCarta.CUATRO);
+		Carta carta5C = new Carta(PaloCarta.CORAZON, ValorCarta.CINCO);
 
 		assertTrue(carta5C.esSuperiorA(carta4C));
 	}
@@ -23,8 +23,8 @@ class CartaTest {
 	@Test
 	void testEsSuperiorAFalse() {
 
-		Carta carta4C = new Carta(PaloCarta.CORAZON, 4);
-		Carta carta5C = new Carta(PaloCarta.CORAZON, 5);
+		Carta carta4C = new Carta(PaloCarta.CORAZON, ValorCarta.CUATRO);
+		Carta carta5C = new Carta(PaloCarta.CORAZON, ValorCarta.CINCO);
 
 		assertFalse(carta4C.esSuperiorA(carta5C));
 	}
@@ -32,8 +32,8 @@ class CartaTest {
 	@Test
 	void testEsMismoPaloTrue() {
 
-		Carta carta4C = new Carta(PaloCarta.CORAZON, 4);
-		Carta carta5C = new Carta(PaloCarta.CORAZON, 5);
+		Carta carta4C = new Carta(PaloCarta.CORAZON, ValorCarta.CUATRO);
+		Carta carta5C = new Carta(PaloCarta.CORAZON, ValorCarta.CINCO);
 
 		assertTrue(carta5C.esMismoPalo(carta4C));
 	}
@@ -41,8 +41,8 @@ class CartaTest {
 	@Test
 	void testEsMismoPaloFals() {
 
-		Carta carta4P = new Carta(PaloCarta.PICA, 4);
-		Carta carta5C = new Carta(PaloCarta.CORAZON, 5);
+		Carta carta4P = new Carta(PaloCarta.PICA, ValorCarta.CUATRO);
+		Carta carta5C = new Carta(PaloCarta.CORAZON, ValorCarta.CINCO);
 
 		assertFalse(carta5C.esMismoPalo(carta4P));
 	}
