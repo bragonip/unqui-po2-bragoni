@@ -116,30 +116,77 @@ public class PokerStatusTest {
 //
 //	}
 
+	// ejercicio 3
+//	@Test
+//	public void testVerificarPoker() {
+//		assertEquals("Poker", pokerStatus.verificar(C1, D1, P1, T1, C1));
+//		assertEquals("Poker", pokerStatus.verificar(C1, D1, P1, T1, C2));
+//	}
+//
+//	@Test
+//	public void testVerificarColor() {
+//
+//		assertEquals("Color", pokerStatus.verificar(C1, C3, C3, C5, C3));
+//		assertEquals("Color", pokerStatus.verificar(C1, D1, C3, C4, D6));
+//		assertEquals("Color", pokerStatus.verificar(T1, T2, T3, T4, T5));
+//		assertEquals("Color", pokerStatus.verificar(T1, P1, P2, T5, P3));
+//	}
+//
+//	@Test
+//	public void testVerificarTrio() {
+//		assertEquals("Trio", pokerStatus.verificar(C1, C2, P1,T1, C3));
+//
+//	}
+//
+//	@Test
+//	public void testVerificarNada() {
+//		assertEquals("Nada", pokerStatus.verificar(C1, D2, P3,T5, C6));
+//
+//	}
+
 	@Test
 	public void testVerificarPoker() {
-		assertEquals("Poker", pokerStatus.verificar(C1, D1, P1, T1, C1));
-		assertEquals("Poker", pokerStatus.verificar(C1, D1, P1, T1, C2));
+		assertEquals(Juego.POKER, pokerStatus.verificar(C1, D1, P1, T1, C1));
+		assertEquals(Juego.POKER, pokerStatus.verificar(C1, D1, P1, T1, C2));
 	}
 
 	@Test
 	public void testVerificarColor() {
 
-		assertEquals("Color", pokerStatus.verificar(C1, C3, C3, C5, C3));
-		assertEquals("Color", pokerStatus.verificar(C1, D1, C3, C4, D6));
-		assertEquals("Color", pokerStatus.verificar(T1, T2, T3, T4, T5));
-		assertEquals("Color", pokerStatus.verificar(T1, P1, P2, T5, P3));
+		assertEquals(Juego.COLOR, pokerStatus.verificar(C1, C3, C3, C5, C3));
+		assertEquals(Juego.COLOR, pokerStatus.verificar(C1, D1, C3, C4, D6));
+		assertEquals(Juego.COLOR, pokerStatus.verificar(T1, T2, T3, T4, T5));
+		assertEquals(Juego.COLOR, pokerStatus.verificar(T1, P1, P2, T5, P3));
 	}
 
 	@Test
 	public void testVerificarTrio() {
-		assertEquals("Trio", pokerStatus.verificar(C1, C2, P1,T1, C3));
+		assertEquals(Juego.TRIO, pokerStatus.verificar(C1, C2, P1, T1, C3));
 
 	}
 
 	@Test
 	public void testVerificarNada() {
-		assertEquals("Nada", pokerStatus.verificar(C1, D2, P3,T5, C6));
+		assertEquals(Juego.NADA, pokerStatus.verificar(C1, D2, P3, T5, C6));
 
 	}
+
+	@Test
+	public void testEsSuperior() {
+		Mano poker1 = new Mano(C1, D1, P1, T1, C1);
+		Mano poker2 = new Mano(C1, D1, P1, T1, C3);
+		Mano color = new Mano(C1, D2, C3, D4, C4);
+		Mano trio = new Mano(C1, T1, D1, D4, C4);
+		Mano nada = new Mano(C1, D2, C3, T4, P5);
+		
+		assertTrue(pokerStatus.esSuperiorA(poker1, color));
+		assertTrue(pokerStatus.esSuperiorA(poker1, trio));
+		assertTrue(pokerStatus.esSuperiorA(poker1, nada));
+		assertTrue(pokerStatus.esSuperiorA(color, trio));
+		assertTrue(pokerStatus.esSuperiorA(color, nada));
+		assertTrue(pokerStatus.esSuperiorA(trio, nada));
+		assertTrue(pokerStatus.esSuperiorA(poker1, poker2));
+
+	}
+
 }

@@ -1,61 +1,99 @@
 package ar.edu.unq.po2.tp7;
 
-import static org.junit.jupiter.api.DynamicTest.stream;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class PokerStatus {
 
-	public String verificar(Carta c1, Carta d1, Carta p1, Carta t1, Carta c12) {
-
-		List<Carta> mano = new ArrayList<Carta>();
-
-		mano.add(c1);
-		mano.add(d1);
-		mano.add(p1);
-		mano.add(t1);
-		mano.add(c12);
+	public Juego verificar(Mano mano) {
 
 		if (this.hayPoker(mano)) {
-			return "Poker";
+			return Juego.POKER;
 		} else if (this.hayColor(mano)) {
-			return "Color";
+			return Juego.COLOR;
 		} else if (this.hayTrio(mano)) {
-			return "Trio";
+			return Juego.TRIO;
 		} else
-			return "Nada";
+			return Juego.NADA;
 	}
 
-	private boolean hayPoker(List<Carta> mano) {
+	private boolean hayPoker(Mano mano) {
 
 		List<ValorCarta> valores = new ArrayList<ValorCarta>();
 
-		mano.stream().forEach(carta -> valores.add(carta.getValor()));
+		mano.getCartas().stream().forEach(carta -> valores.add(carta.getValor()));
 
 		return valores.stream().anyMatch(carta -> Collections.frequency(valores, carta) > 3);
 	}
 
-	private boolean hayColor(List<Carta> mano) {
+	private boolean hayColor(Mano mano) {
 		List<PaloCarta> palos = new ArrayList<PaloCarta>();
 
-		mano.stream().forEach(carta -> palos.add(carta.getPalo()));
+		mano.getCartas().stream().forEach(carta -> palos.add(carta.getPalo()));
 
 		return palos.stream().allMatch(carta -> (carta == PaloCarta.CORAZON || carta == PaloCarta.DIAMANTE))
 				|| palos.stream().allMatch(carta -> (carta == PaloCarta.PICA || carta == PaloCarta.TREBOL));
 	}
 
-	private boolean hayTrio(List<Carta> mano) {
+	private boolean hayTrio(Mano mano) {
 		List<ValorCarta> valores = new ArrayList<ValorCarta>();
 
-		mano.stream().forEach(carta -> valores.add(carta.getValor()));
+		mano.getCartas().stream().forEach(carta -> valores.add(carta.getValor()));
 
 		return valores.stream().anyMatch(carta -> Collections.frequency(valores, carta) > 2);
 
 	}
 
-	//ejercicio 2
+//	ejercicio 3
+//	public String verificar(Carta c1, Carta d1, Carta p1, Carta t1, Carta c12) {
+//
+//		List<Carta> mano = new ArrayList<Carta>();
+//
+//		mano.add(c1);
+//		mano.add(d1);
+//		mano.add(p1);
+//		mano.add(t1);
+//		mano.add(c12);
+//
+//		if (this.hayPoker(mano)) {
+//			return "Poker";
+//		} else if (this.hayColor(mano)) {
+//			return "Color";
+//		} else if (this.hayTrio(mano)) {
+//			return "Trio";
+//		} else
+//			return "Nada";
+//	}
+//
+//	private boolean hayPoker(List<Carta> mano) {
+//
+//		List<ValorCarta> valores = new ArrayList<ValorCarta>();
+//
+//		mano.stream().forEach(carta -> valores.add(carta.getValor()));
+//
+//		return valores.stream().anyMatch(carta -> Collections.frequency(valores, carta) > 3);
+//	}
+//
+//	private boolean hayColor(List<Carta> mano) {
+//		List<PaloCarta> palos = new ArrayList<PaloCarta>();
+//
+//		mano.stream().forEach(carta -> palos.add(carta.getPalo()));
+//
+//		return palos.stream().allMatch(carta -> (carta == PaloCarta.CORAZON || carta == PaloCarta.DIAMANTE))
+//				|| palos.stream().allMatch(carta -> (carta == PaloCarta.PICA || carta == PaloCarta.TREBOL));
+//	}
+//
+//	private boolean hayTrio(List<Carta> mano) {
+//		List<ValorCarta> valores = new ArrayList<ValorCarta>();
+//
+//		mano.stream().forEach(carta -> valores.add(carta.getValor()));
+//
+//		return valores.stream().anyMatch(carta -> Collections.frequency(valores, carta) > 2);
+//
+//	}
+
+	// ejercicio 2
 //	public String verificar(String carta1, String carta2, String carta3, String carta4, String carta5) {
 //
 //		List<String> mano = new ArrayList<String>();
@@ -124,13 +162,30 @@ public class PokerStatus {
 //	}
 
 	public static void main(String args[]) {
-		List<String> mano = new ArrayList<String>();
+	}
 
-		mano.add("10D");
-		mano.add("10K");
-//		System.out.println("10D".substring("10D".length() - 1, "10D".length()));
+	public boolean esSuperiorA(Mano unaMano, Mano otraMano) {
+		if (this.verificar(unaMano) == this.verificar(otraMano)) {
+			return this.tieneMasValor(unaMano, otraMano);
+		} else
+			return this.verificar(unaMano).ordinal() > this.verificar(otraMano).ordinal();
+	}
 
-		System.out.println("10D".charAt("10D".length() - 1));
+	private boolean tieneMasValor(Mano unaMano, Mano otraMano) {
 
+		int puntosUnaMano= 0;
+		int puntosOtraMano= 0;
+
+		for (int a = 0; a < unaMano.getCartas().size(); a++) {
+			for (int b = 0; b < otraMano.getCartas().size(); b++) {
+				if(unaMano.getCartas().get(a).getValor().ordinal() > otraMano.getCartas().get(b).getValor().ordinal()) {
+					puntosUnaMano++;
+				}
+				else if(unaMano.getCartas().get(a).getValor().ordinal() < otraMano.getCartas().get(b).getValor().ordinal()) {
+					puntosOtraMano++;
+				};
+			}
+		}
+		return puntosUnaMano>=puntosOtraMano;
 	}
 }
