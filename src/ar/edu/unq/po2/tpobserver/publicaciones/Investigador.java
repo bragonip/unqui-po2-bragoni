@@ -10,10 +10,6 @@ public class Investigador {
 		this.setTemasDeInteres(temasDeInteres);
 	}
 
-	public void suscribirse(Publicador publicador) {
-		publicador.agregarSuscriptor(this);
-	}
-
 	private List<String> getTemasDeInteres() {
 		return temasDeInteres;
 	}
@@ -22,10 +18,8 @@ public class Investigador {
 		this.temasDeInteres = temasDeInteres;
 	}
 
-	public void recibirArticulo(Articulo articulo) {
-//		if (this.getTemasDeInteres().stream().anyMatch(palabra -> palabrasClave.contains(palabra))) {
-//			publicador.enviarPublicacion(this);
-//		}
+	public void suscribirse(Publicador publicador) {
+		publicador.agregarSuscriptor(this);
 	}
 
 	public void publicar(Publicador publicador, Articulo articulo) {
@@ -36,5 +30,7 @@ public class Investigador {
 		return this.getTemasDeInteres().stream().anyMatch(tema -> palabrasClave.contains(tema));
 	}
 
+	public void recibirArticulo(Articulo articulo) {
+	}
 
 }
