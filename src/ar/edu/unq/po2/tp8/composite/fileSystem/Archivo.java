@@ -6,7 +6,7 @@ public class Archivo extends Directorio {
 
 	private int espacioOcupado;
 	private Date ultimaModificacion;
-	
+
 	public Archivo(String nombre, Date fechaCreacion, int espacioOcupado) {
 		super(nombre, fechaCreacion);
 		this.setEspacioOcupado(espacioOcupado);
@@ -37,7 +37,7 @@ public class Archivo extends Directorio {
 	@Override
 	public void printStructure() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -50,4 +50,8 @@ public class Archivo extends Directorio {
 		return this;
 	}
 
+	@Override
+	public Date getFecha() {
+		return this.getUltimaModificacion();
+	}
 }

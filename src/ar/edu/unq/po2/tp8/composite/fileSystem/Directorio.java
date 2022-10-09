@@ -53,7 +53,20 @@ public class Directorio implements FileSystem {
 	@Override
 	public FileSystem lastModified() {
 		return this.getContenido().stream().reduce(this.getContenido().get(0),
-				(masNuevo, actual) -> Math.min(masNuevo,actual));
+				(masNuevo, actual) -> masNuevo.lastModifiedBetween(actual));
+	}
+
+	@Override
+	public FileSystem lastModifiedBetween(FileSystem fileSystem) {
+		if (this.getFechaCreacion().after(fileSystem.getFecha())) {
+			return this;
+		}
+		else return fileSystem;
+	}
+
+	@Override
+	public Date getFecha() {
+		return this.getFechaCreacion();
 	}
 
 	@Override
@@ -61,5 +74,6 @@ public class Directorio implements FileSystem {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 }
