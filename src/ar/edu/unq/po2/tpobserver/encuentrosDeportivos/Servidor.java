@@ -7,7 +7,7 @@ public class Servidor {
 
 	private List<Deporte> deportes;
 	private List<Partido> partidos;
-	private Map<Aplicacion, List<String>> suscriptores;
+	private Map<Aplicacion, Suscripcion> suscriptores;
 
 	public List<Deporte> getDeportes() {
 		return this.deportes;
@@ -16,13 +16,21 @@ public class Servidor {
 	public void setDeportes(List<Deporte> deportes) {
 		this.deportes = deportes;
 	}
-	
+
 	public List<Partido> getPartidos() {
 		return this.partidos;
 	}
 
 	public void setPartidos(List<Partido> partidos) {
 		this.partidos = partidos;
+	}
+
+	public Map<Aplicacion, Suscripcion> getSuscriptores() {
+		return suscriptores;
+	}
+
+	public void setSuscriptores(Map<Aplicacion, Suscripcion> suscriptores) {
+		this.suscriptores = suscriptores;
 	}
 
 	public void suscribir(PublicadorDeResultados publicador) {
@@ -38,7 +46,8 @@ public class Servidor {
 	public void agregarPartido(Partido partidoDeseado) {
 		this.getPartidos().add(partidoDeseado);
 	}
-
-
-
+	
+	public void agregarSuscriptor(Aplicacion suscriptor, Suscripcion suscripcion) {
+		this.getSuscriptores().put(suscriptor, suscripcion);
+	}
 }
