@@ -1,4 +1,4 @@
-package ar.edu.unq.po2.tpobserver.complexSensor;
+package ar.edu.unq.po2.tp8.observer.complexSensor;
 /**
  * Importante: esta clase fue desarrollada a modo de ejemplo y disparador
  * para ser criticados y mejorados en la practica de Observer de la materia

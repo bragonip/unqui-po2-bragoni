@@ -1,4 +1,4 @@
-package ar.edu.unq.po2.tpobserver.encuentrosDeportivos;
+package ar.edu.unq.po2.tp8.observer.encuentrosDeportivos;
 
 import java.util.List;
 

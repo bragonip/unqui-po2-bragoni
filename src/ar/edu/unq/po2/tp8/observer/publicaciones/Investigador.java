@@ -1,4 +1,4 @@
-package ar.edu.unq.po2.tpobserver.publicaciones;
+package ar.edu.unq.po2.tp8.observer.publicaciones;
 
 import java.util.List;
 
