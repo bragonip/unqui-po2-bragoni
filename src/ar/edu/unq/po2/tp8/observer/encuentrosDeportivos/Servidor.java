@@ -3,11 +3,11 @@ package ar.edu.unq.po2.tp8.observer.encuentrosDeportivos;
 import java.util.List;
 import java.util.Map;
 
-public class Servidor {
+public class Servidor implements IObservable, IObserver {
 
 	private List<Deporte> deportes;
 	private List<Partido> partidos;
-	private Map<Aplicacion, Suscripcion> suscriptores;
+	private List<IObserver> suscriptores;
 
 	public List<Deporte> getDeportes() {
 		return this.deportes;
@@ -25,29 +25,46 @@ public class Servidor {
 		this.partidos = partidos;
 	}
 
-	public Map<Aplicacion, Suscripcion> getSuscriptores() {
+	public List<IObserver> getSuscriptores() {
 		return suscriptores;
 	}
 
-	public void setSuscriptores(Map<Aplicacion, Suscripcion> suscriptores) {
+	public void setSuscriptores(List<IObserver> suscriptores) {
 		this.suscriptores = suscriptores;
 	}
 
-	public void suscribir(PublicadorDeResultados publicador) {
-		publicador.agregarSuscriptor(this);
+	@Override
+	public void suscribir(IObservable observable) {
+		observable.agregarSuscriptor(this);
 	}
 
-	public void serNotificado(PublicadorDeResultados publicador, Deporte deporte) {
-		if (this.getDeportes().contains(deporte)) {
-			publicador.enviarUltimoPartidoDe(deporte, this);
+	@Override
+	public void serNotificado(Partido partido) {
+		if (this.estaInteresadoEn(partido.getDeporte())) {
+			this.agregarPartido(partido);
+			;
 		}
 	}
 
 	public void agregarPartido(Partido partidoDeseado) {
 		this.getPartidos().add(partidoDeseado);
+		this.notificar(partidoDeseado);
 	}
-	
-	public void agregarSuscriptor(Aplicacion suscriptor, Suscripcion suscripcion) {
-		this.getSuscriptores().put(suscriptor, suscripcion);
+
+	@Override
+	public void agregarSuscriptor(IObserver suscriptor) {
+		this.getSuscriptores().add(suscriptor);
 	}
+
+	@Override
+	public void notificar(Partido partidoDeseado) {
+		this.getSuscriptores().stream().filter(suscriptor -> suscriptor.estaInteresadoEn(partidoDeseado.getDeporte()))
+				.forEach(suscriptor -> suscriptor.serNotificado(partidoDeseado));
+	}
+
+	@Override
+	public boolean estaInteresadoEn(Deporte deporte) {
+		return this.getDeportes().contains(deporte);
+	}
+
 }

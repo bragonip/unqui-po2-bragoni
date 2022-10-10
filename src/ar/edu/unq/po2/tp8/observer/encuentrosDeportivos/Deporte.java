@@ -1,6 +1,6 @@
 package ar.edu.unq.po2.tp8.observer.encuentrosDeportivos;
 
-public class Deporte {
+public enum Deporte {
 	
 
 }

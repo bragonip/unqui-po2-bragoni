@@ -2,20 +2,16 @@ package ar.edu.unq.po2.tp8.observer.encuentrosDeportivos;
 
 import java.util.List;
 
-public class PublicadorDeResultados {
+public class PublicadorDeResultados implements IObservable{
 
-	private List<Servidor> suscriptores;
 	private List<Partido> partidos;
-//	private List<Servidor> suscriptoresTenis;
-//	private List<Servidor> suscriptoresFutbol;
-//	private List<Servidor> suscriptoresBasquet;
-//	private List<Servidor> suscriptoresPingPong;
+	private List<IObserver> suscriptores;
 
-	public List<Servidor> getSuscriptores() {
+	public List<IObserver> getSuscriptores() {
 		return this.suscriptores;
 	}
 
-	public void setSuscriptores(List<Servidor> suscriptores) {
+	public void setSuscriptores(List<IObserver> suscriptores) {
 		this.suscriptores = suscriptores;
 	}
 
@@ -26,25 +22,25 @@ public class PublicadorDeResultados {
 	public void setPartidos(List<Partido> partidos) {
 		this.partidos = partidos;
 	}
-
-	public void agregarSuscriptor(Servidor servidor) {
-		this.getSuscriptores().add(servidor);
-	}
 	
+	@Override
+	public void agregarSuscriptor(IObserver suscriptor) {
+		this.getSuscriptores().add(suscriptor);
+	}
+
 	public void agregarPartido(Partido partido) {
 		this.getPartidos().add(partido);
 	}
 
+	@Override
 	public void notificar(Partido partido) {
-		this.getSuscriptores().stream().forEach(suscriptor -> suscriptor.serNotificado(this, partido.getDeporte()));
+		this.getSuscriptores().stream().forEach(suscriptor -> suscriptor.serNotificado(partido));
 		this.agregarPartido(partido);
-//		this.getSuscriptores().stream().filter(suscriptor -> suscriptor.getDeportes().contains(partido.getDeporte())).
-//			forEach(suscriptor -> suscriptor.recibir(partido));
 	}
 
-	public void enviarUltimoPartidoDe(Deporte deporte, Servidor suscriptor) {
-		Partido partidoDeseado = this.getPartidos().stream().filter(partido -> partido.getDeporte() == deporte).toList().get(0);
-		suscriptor.agregarPartido(partidoDeseado);
-	}
+//	public void enviarUltimoPartidoDe(Deporte deporte, Servidor suscriptor) {
+//		Partido partidoDeseado = this.getPartidos().stream().filter(partido -> partido.getDeporte() == deporte).toList().get(0);
+//		suscriptor.agregarPartido(partidoDeseado);
+//	}
 
 }
