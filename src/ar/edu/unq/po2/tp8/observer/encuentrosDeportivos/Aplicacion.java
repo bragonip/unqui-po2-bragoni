@@ -4,8 +4,17 @@ import java.util.List;
 
 public class Aplicacion implements IObserver {
 
+	private List<String> contrincantes;
 	private List<Deporte> deportes;
-	
+
+	public List<String> getContrincantes() {
+		return contrincantes;
+	}
+
+	public void setContrincantes(List<String> contrincantes) {
+		this.contrincantes = contrincantes;
+	}
+
 	public Aplicacion(List<Deporte> deportes) {
 		this.setDeportes(deportes);
 	}
@@ -29,10 +38,17 @@ public class Aplicacion implements IObserver {
 		// TODO Auto-generated method stub
 
 	}
-	@Override
-	public boolean estaInteresadoEn(Deporte deporte) {
+
+	
+	public boolean estaInteresadoEn(Partido partido) {
+		return this.leInteresaDeporte(partido.getDeporte())|| this.leInteresaContrincante(partido.getContrincantes());
+	}
+	
+	private boolean leInteresaDeporte(Deporte deporte) {
 		return this.getDeportes().contains(deporte);
 	}
 
-
+	private boolean leInteresaContrincante(List<String> contrincantes) {
+		return this.getContrincantes().stream().anyMatch(contrincante -> contrincantes.contains(contrincante));
+	}
 }

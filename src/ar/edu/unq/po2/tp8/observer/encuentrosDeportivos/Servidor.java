@@ -40,7 +40,7 @@ public class Servidor implements IObservable, IObserver {
 
 	@Override
 	public void serNotificado(Partido partido) {
-		if (this.estaInteresadoEn(partido.getDeporte())) {
+		if (this.estaInteresadoEn(partido)) {
 			this.agregarPartido(partido);
 			;
 		}
@@ -58,13 +58,13 @@ public class Servidor implements IObservable, IObserver {
 
 	@Override
 	public void notificar(Partido partidoDeseado) {
-		this.getSuscriptores().stream().filter(suscriptor -> suscriptor.estaInteresadoEn(partidoDeseado.getDeporte()))
+		this.getSuscriptores().stream().filter(suscriptor -> suscriptor.estaInteresadoEn(partidoDeseado))
 				.forEach(suscriptor -> suscriptor.serNotificado(partidoDeseado));
 	}
 
 	@Override
-	public boolean estaInteresadoEn(Deporte deporte) {
-		return this.getDeportes().contains(deporte);
+	public boolean estaInteresadoEn(Partido partido) {
+		return this.getDeportes().contains(partido.getDeporte());
 	}
 
 }

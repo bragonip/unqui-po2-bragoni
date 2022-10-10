@@ -4,5 +4,5 @@ public interface IObserver {
 	
 	public void suscribir(IObservable observable);
 	public void serNotificado(Partido partido);
-	public boolean estaInteresadoEn(Deporte deporte);
+	public boolean estaInteresadoEn(Partido partido);
 }

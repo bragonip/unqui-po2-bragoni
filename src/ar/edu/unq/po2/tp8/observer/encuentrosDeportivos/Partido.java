@@ -22,7 +22,7 @@ public class Partido {
 		this.resultado = resultado;
 	}
 
-	private List<String> getContrincantes() {
+	public List<String> getContrincantes() {
 		return this.contrincantes;
 	}
 
